@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ligature</title>
+    <style>
+      <!--#include virtual="/ligature/css/inline.min.css" -->
+    </style>
+    <link rel="icon" href="/ligature/assets/favicon.ico" type="image/x-icon"/>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/ligature/css/main.min.css"/>
+    <script>
+      // feature detection
+      var clientFeatures = ["js"];
+      if (typeof module !== 'undefined' && module.exports) clientFeatures.push("commonjs");
+
+      document.documentElement.className += clientFeatures.join(" ");
+    </script>
+    <script>
+      <!--#include virtual="/ligature/js/libs.min.js" -->
+    </script>
+  </head>
+  <body>
+    <div id="app-container">
+      <div id="modal-container"></div>
+      <div id="book-container" class="scrolled"></div>
+      <div id="note-container" class="scrolled"></div>
+      <div id="content-container"></div>
+    </div>
+    <div id="scripts">
+      <script>
+        <!--#include virtual="/ligature/js/app.min.js" -->
+      </script>
+    </div>  
+  </body>
+</html>
