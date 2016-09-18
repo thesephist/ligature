@@ -229,7 +229,7 @@ var NoteView = Backbone.View.extend({
     },
 
     render: function() {
-        this.$el.html('<div class="note-title clickable">' + this.model.escape("title") + '</div><textarea autofocus class="note-content" placeholder="Note Content">' + this.model.escape("content") + '</textarea><div id="options" class="icons"><div id="add-note" class="clickable">add</div><div id="delete-note" class="clickable">clear</div><div id="wordcount" class="clickable">done</div></div>');
+        this.$el.html('<div class="note-title clickable">' + this.model.escape("title") + '</div><textarea autofocus class="note-content scrolled" placeholder="Note Content">' + this.model.escape("content") + '</textarea><div id="options" class="icons"><div id="add-note" class="clickable">add</div><div id="delete-note" class="clickable">clear</div><div id="wordcount" class="clickable">done</div></div>');
 
         return this;
     }
