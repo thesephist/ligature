@@ -1,0 +1,21 @@
+{
+  "name": "Ligature",
+  "short_name": "Ligature",
+  "start_url": "/ligature",
+
+  "display": "standalone",
+  "background_color": "#fff",
+  "theme_color": "#fff",
+  "description": "Ligature",
+
+  "icons": [
+    {
+      "src": "/ligature/assets/logo.png",
+      "sizes": "468x468",
+      "type": "image/png"
+    }
+  ],
+
+  "serviceWorker": "/ligature/lsw.js"
+
+}
