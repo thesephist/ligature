@@ -708,6 +708,10 @@ notelist.fetch({
     }
 });
 
+if ('onLine' in navigator && navigator.onLine === false) {
+    document.body.className += "offline";
+}
+
 function parseNotelist() {
 
     // this could be optimized...
