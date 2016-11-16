@@ -45,7 +45,7 @@ var Note = Backbone.Model.extend({
     },
 
     updateTitle: function(newtitle) {
-        this.set("title", htmlEscape(newtitle));
+        this.set("title", newtitle);
         this.updateLastEdited();
         this.save({}, {
             error: this.saveError
