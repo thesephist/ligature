@@ -1,0 +1,19 @@
+#editor {
+    overflow: hidden;
+
+    .title {
+        @include free-input;
+        font-size: 30px;
+    }
+
+    .meta {
+        color: $text-grey;
+        font-size: 14px;
+    }
+
+    .content {
+        font-family: $font-family;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+}

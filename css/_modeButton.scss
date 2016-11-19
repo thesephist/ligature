@@ -1,0 +1,26 @@
+#mode-button {
+    width: 20px;
+    height: 20px;
+    position: fixed;
+    z-index: 5;
+    border-radius: 50%;
+    top: 40vw;
+    left: 0;
+
+    transition: transform .3s;
+
+    &:hover,
+    &:focus {
+        background: grey;
+    }
+}
+
+// authoring mode
+.authoring #mode-button {
+    transform: translateX(0);
+}
+
+// overview mode (default)
+.overview #mode-button {
+    transform: translateX(240); // Depends on $sidebar-width
+}

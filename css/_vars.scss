@@ -1,0 +1,41 @@
+$font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+
+// layout
+$header-height: 50px;
+$sidebar-width: 200px;
+$modal-top: 240px;
+$modal-width: 240px;
+
+// colors
+$text-black: #333;
+$text-grey: #777;
+$text-white: #eee;
+
+// typical input field
+@mixin free-input {
+    outline: none;
+    border: 0 solid white;
+    box-shadow: none;
+
+    &:hover,
+    &:focus {
+        outline: none;
+        border: 0 solid white;
+        box-shadow: none;
+    }
+}
+
+@mixin free-button {
+    outline: none;
+    border: 0 solid white;
+    box-shadow: none;
+    background: transparent;
+
+    &:hover,
+    &:focus {
+        outline: none;
+        border: 0 solid white;
+        box-shadow: none;
+        background: transparent;
+    }
+}

@@ -1,6 +1,7 @@
-var http = require('http');
-var mysql = require('mysql');
-var V = require("./v.js");
+const fs = require('fs');
+const http = require('http');
+const mysql = require('mysql');
+const V = require("./v.js");
 
 function preprocess(request, response, callback) {
     var queryData = "";
@@ -33,10 +34,13 @@ var consecutiveFatalCounts = 0;
 var connection;
 
 function makeConnection() {
+
+    const key = fs.readFileSync("./polyx.key", "utf8").trim();
+
     connection = mysql.createConnection({
-        host  : 'localhost',
+        host  : 'tltserve',
         user  : 'thesephist',
-        password  : '-',
+        password  : V.decryptor(key, V.rs_w("mysql"), "hex"),
         database : 'ligature'
     });
 
@@ -61,7 +65,7 @@ function errorHandler(err) {
 
         if (consecutiveFatalCounts > 32) {
             console.log("Fatal error occured more than 32 times in a row, attempting to reestablish connection in 30 seconds");
-        
+
             setTimeout(makeConnection, 24000);
             setTimeout(openConnection, 30000);
             return;
@@ -75,7 +79,7 @@ function errorHandler(err) {
     } else {
         console.log("Non-fatal error occured below.");
     }
-    
+
     console.log("Error Code", err.code);
     console.log("Fatal Error Count", consecutiveFatalCounts);
     console.log("Server Time", new Date());
@@ -116,10 +120,10 @@ function getNote(serial, res) {
         if (err) {
             res.statusCode = 500;
             res.end('{ action: "get", serial: serial, result: "fail" }');
-        
+
             errorHandler(err);
         }
-        
+
         res.end(JSON.stringify(rows));
     });
 }
@@ -130,10 +134,10 @@ function createNote(bookID, serial, title, content, lastEdited, res) {
         if (err) {
             res.statusCode = 500;
             res.end('{ action: "create", serial: serial, result: "fail" }');
-        
+
             errorHandler(err);
         }
-        
+
         res.end('{ action: "create", serial: serial, result: "success" }');
     });
 }
@@ -144,7 +148,7 @@ function deleteNote(serial, res) {
         if (err) {
             res.statusCode = 500;
             res.end('{ action: "delete", serial: serial, result: "fail" }');
-   
+
             errorHandler(err);
         }
 
@@ -158,7 +162,7 @@ function updateNote(serial, title, content, lastEdited, res) {
         if (err) {
             res.statusCode = 500;
             res.end('{ action: "update", serial: serial, result: "fail" }');
-          
+
             errorHandler(err);
         }
 
@@ -172,7 +176,7 @@ function updateNote(serial, title, content, lastEdited, res) {
 function closeConnection() {
     connection.end(function(err){
         if (err) throw err;
-        
+
         console.log("Connection closed.");
     });
 }
@@ -182,15 +186,8 @@ var app = http.createServer(function(req, res) {
 
     console.log(req.method, req.url, req.headers.referer);
 
-    if (req.headers.referer && req.headers.referer.indexOf("//random.thelifelongtraveler.com/ligature") == -1 || !req.headers.referer) {
-        res.writeHead(403, {'Content-Type': 'text/plain'});
-        res.end("Invalid request!");
-        req.connection.destroy();
-        return;
-    }
-
     res.setHeader('Content-Type', 'application/json');
-    
+
     noteID = req.url.split("ligature/api/")[1];
 
     if (req.method == "GET") {
@@ -204,7 +201,7 @@ var app = http.createServer(function(req, res) {
             deleteNote(noteID, res);
         }
     }
- 
+
     preprocess(req, res, function() {
 
         bookID = req.post.bookID;
@@ -222,8 +219,7 @@ var app = http.createServer(function(req, res) {
 
 });
 
-app.listen(1998);
-
+// start server
 makeConnection();
 openConnection();
-
+app.listen(1998);

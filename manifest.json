@@ -1,21 +1,21 @@
 {
   "name": "Ligature",
-  "short_name": "Ligature",
-  "start_url": "/ligature",
+  "short_name": "ligature",
+  "start_url": "https://random.thelifelongtraveler.com/ligature",
 
   "display": "standalone",
-  "background_color": "#fff",
-  "theme_color": "#fff",
-  "description": "Ligature",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "description": "A lightweight, minimalist notes application",
 
   "icons": [
     {
-      "src": "/ligature/assets/logo.png",
-      "sizes": "468x468",
+      "src": "assets/icons/default.png",
+      "sizes": "512x512",
       "type": "image/png"
     }
   ],
 
-  "serviceWorker": "/ligature/lsw.js"
+  "serviceWorker": "sw.js"
 
 }

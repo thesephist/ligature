@@ -1,0 +1,13 @@
+#sidebar {
+    overflow: hidden;
+
+    .brand-area {
+        overflow: hidden;
+        height: $header-height;
+    }
+
+    .notelist {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+}

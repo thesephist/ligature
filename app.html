@@ -1,37 +1,44 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>Ligature</title>
-    <style>
-      <!--#include virtual="/ligature/css/inline.min.css" -->
-    </style>
-    <link rel="manifest" href="/ligature/manifest.json">
-    <link rel="icon" href="/ligature/assets/favicon.ico" type="image/x-icon"/>
-    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/ligature/css/main.min.css"/>
+
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="application-name" content="Ligature">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="A lightweight, minimalist notes application">
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="manifest" href="/manifest.json">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700" rel="stylesheet">
+    <link rel="author" href="humans.txt">
+
     <script>
       // feature detection
-      var clientFeatures = ["js"];
+      var clientFeatures = ['js'];
       if (typeof module !== 'undefined' && module.exports) clientFeatures.push("commonjs");
+      document.documentElement.className += clientFeatures.join(' ');
+    </script>
 
-      document.documentElement.className += clientFeatures.join(" ");
-    </script>
-    <script>
-      <!--#include virtual="/ligature/js/libs.min.js" -->
-    </script>
   </head>
+
   <body>
-    <div id="app-container">
-      <div id="modal-container"></div>
-      <div id="book-container" class="scrolled"></div>
-      <div id="note-container" class="scrolled"></div>
-      <div id="content-container"></div>
+
+    <div id="content">
+      <!-- App Views -->
+
+      <noscript>
+        You need JavaScript to run Ligature!
+      </noscript>
     </div>
-    <div id="scripts">
-      <script>
-        <!--#include virtual="/ligature/js/app.min.js" -->
-      </script>
-    </div>
+
+    <script src="/js/libs.min.js"></script>
+    <script src="/js/main.min.js"></script>
+
   </body>
+
 </html>

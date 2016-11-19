@@ -1,0 +1,10 @@
+#content {
+    overflow: hidden;
+    color: $text-black;
+    font-family: $font-family;
+
+    .disabled {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+}
