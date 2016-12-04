@@ -138,7 +138,7 @@ function createNote(bookID, serial, title, content, lastEdited, res) {
             errorHandler(err);
         }
 
-        res.end('{ action: "create", serial: serial, result: "success" }');
+        res.end(JSON.stringify(rows));
     });
 }
 
@@ -152,13 +152,13 @@ function deleteNote(serial, res) {
             errorHandler(err);
         }
 
-        res.end('{ action: "delete", serial: serial, result: "success" }');
+        res.end(JSON.stringify(rows));
     });
 }
 
 // update note
-function updateNote(serial, title, content, lastEdited, res) {
-    var query = connection.query('UPDATE notes SET title="' + title + '", content="' + content + '", lastEdited="' + lastEdited + '" WHERE serial="' + serial + '"', function(err, rows) {
+function updateNote(bookID, serial, title, content, lastEdited, res) {
+    var query = connection.query('UPDATE notes SET bookID="' + bookID + '", title="' + title + '", content="' + content + '", lastEdited="' + lastEdited + '" WHERE serial="' + serial + '"', function(err, rows) {
         if (err) {
             res.statusCode = 500;
             res.end('{ action: "update", serial: serial, result: "fail" }');
@@ -166,18 +166,7 @@ function updateNote(serial, title, content, lastEdited, res) {
             errorHandler(err);
         }
 
-        res.end('{ action: "update", serial: serial, result: "success" }');
-    });
-}
-
-
-
-// ending connection
-function closeConnection() {
-    connection.end(function(err){
-        if (err) throw err;
-
-        console.log("Connection closed.");
+        res.end(JSON.stringify(rows));
     });
 }
 
@@ -213,7 +202,7 @@ var app = http.createServer(function(req, res) {
         if (req.method == "POST") {
             createNote(bookID, serial, title, content, lastEdited, res);
         } else if (req.method == "PUT") {
-            updateNote(serial, title, content, lastEdited, res);
+            updateNote(bookID, serial, title, content, lastEdited, res);
         }
     });
 
